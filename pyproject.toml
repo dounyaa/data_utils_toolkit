@@ -2,28 +2,26 @@
 name = "data-utils-toolkit"
 version = "0.1.0"
 description = "Toolkit for data processing"
-authors = [
-    {name = "Dounya",email = "dounyaa.alaoui@gmail.com"}
-]
 readme = "README.md"
 requires-python = ">=3.11"
+authors = [
+    { name = "Dounya", email = "dounyaa.alaoui@gmail.com" }
+]
 dependencies = [
-    "python-json-logger (>=4.0.0,<5.0.0)"
+    "python-json-logger>=4.0.0,<5.0.0"
 ]
 
 [tool.poetry]
-packages = [{include = "data_utils_toolkit", from = "src"}]
+packages = [{ include = "data_utils_toolkit", from = "src" }]
+
+[tool.poetry.group.dev.dependencies]
+ruff = ">=0.14.7,<0.15.0"
+mypy = ">=1.19.0,<2.0.0"
+pytest = ">=9.0.1,<10.0.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[dependency-groups]
-dev = [
-    "ruff (>=0.14.7,<0.15.0)",
-    "mypy (>=1.19.0,<2.0.0)",
-    "pytest (>=9.0.1,<10.0.0)"
-]
 
 [tool.ruff]
 line-length = 100
