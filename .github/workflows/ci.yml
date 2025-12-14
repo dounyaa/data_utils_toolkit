@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "poetry"
+
+      - name: Install Poetry
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: "1.8.2"
+
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-root
+
+      - name: Ruff (lint)
+        run: poetry run ruff check .
+
+      - name: Mypy (type checking)
+        run: poetry run mypy src/
+
+      - name: Pytest (tests)
+        run: poetry run pytest --maxfail=1 --disable-warnings
